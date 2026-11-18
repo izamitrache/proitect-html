@@ -1,0 +1,215 @@
+/* 1. RESETARE ȘI ELEMENTUL BODY */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    width: 100%;
+    min-height: 100vh;
+    background-image: url("background.jpg");
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    color: #ffeccf;
+    font-family: 'Times New Roman', Times, serif;
+    font-size: 1rem;
+    line-height: 1.5;
+}
+
+/* 2. SELECTORI DE BAZĂ: TAG, CONTINUT, COPIL DIRECT */
+/* Selector Tag */
+header {
+    background: #403535;
+    padding: 1.5rem;
+    text-align: center;
+    border: 1rem solid #6f553f;
+}
+
+/* Selector Element Continut (Descendent) */
+header h1 a {
+    color: #ffeccf;
+    text-decoration:underline;
+    font-size: 1.8rem;
+}
+
+/* 3. MENIU SIMPLU ȘI MENIU EXPANDABIL (DROP-DOWN) */
+.wrapper {
+    width: 100%;
+    background: #294023;
+}
+
+nav .links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+}
+
+nav .links > li > a {
+   /* display: block; */
+    padding: 1rem;
+    color: #ffeccf;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background 0.5s ease;
+}
+
+nav .links > li > a:hover {
+    background: #6f553f;
+}
+
+/* Meniu Drop-down CSS via <details> */
+details.menu-dropdown {
+    background: #403535;
+    margin: 0.5rem;
+    border: 0.2rem solid #6f553f;
+    padding: 1rem;
+}
+
+details.menu-dropdown summary {
+    font-size: 1rem;
+    color: #ffeccf;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+details.menu-dropdown .tracklist {
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+details.menu-dropdown .tracklist > div {
+    background: #6f553f;
+    padding: 0.5rem;
+    border-left: 0.2rem solid #294023;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+/* 4. MAIN ȘI GALERIE IMAGINI (LAYOUT GRID & FLEXBOX) */
+main {
+    max-width: 70rem;
+    margin: 1.5rem auto;
+    padding: 1rem;
+    background: #403535;
+}
+
+.imgs {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+    margin-top: 1.5rem;
+}
+
+figure {
+    border: 0.1rem solid #6f553f;
+    padding: 0.5rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* TRANZIȚIE PE MAI MULTE PROPRIETĂȚI CU DURATE/DELAY-URI DIFERITE */
+    transition: transform 0.3s ease 0s, 
+                box-shadow 0.4s ease 0.1s;
+}
+
+figure img {
+    width: 100%;
+    height: 15rem;
+    object-fit: cover;
+}
+
+figcaption {
+    margin-top: 0.5rem;
+    font-size: 1rem;
+    color: #d2c4ae;
+    text-align: center;
+}
+
+.imgs figure:nth-of-type(even) {
+    background: #6f553f;
+    border-color:#d2c4ae;
+}
+
+.imgs figure:nth-of-type(odd) {
+    background: #403535;
+    border-color:#6f553f
+}
+
+#im27 {
+    grid-column:3;
+    grid-row: 9;
+    border-color:#3f0606;
+    background:#6f553f;
+}
+#im26 {
+    grid-column:1;
+    grid-row:9;
+    border-color:#3f0606;
+    background:#6f553f;
+}
+#im28 {
+    grid-column: 2;
+    grid-row: 10;
+    border-color:#3f0606;
+    background:#6f553f;
+}
+
+
+figure:hover {
+    transform: scale(1.05);
+    box-shadow: 0 4px 10px #000000;
+}
+
+@keyframes animatie {
+    0% {
+        transform: scale(1);
+        color: #ffeccf;
+        opacity: 0.6;
+    }
+    50% {
+        transform: scale(1.03);
+        color: #d2c4ae;
+        opacity: 1;
+    }
+    100% {
+        transform: scale(1);
+        color: #ffeccf;
+        opacity: 0.6;
+    }
+}
+
+header h1 {
+    animation: animatie 3s infinite ease-in-out;
+}
+
+@media screen and (max-width: 850px) {
+    .imgs {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media screen and (max-width: 600px) {
+    nav .links {
+        flex-direction: column;
+    }
+
+    nav .links > li > a {
+        text-align: center;
+    }
+
+    .imgs {
+        grid-template-columns: 1fr;
+    }
+
+    details.menu-dropdown .tracklist > div {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.5rem;
+    }
+}
